@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProdutoSyncTaskSave;
@@ -91,6 +92,7 @@ public class ProdutoFormActivity extends AppCompatActivity {
         if (!FormerHelper.validateRequired(requiredMessage, editTextNome, editTextDescricao, editTextQuantidade, editTextValorUnitario, editTextQuantidadeMinima)) {
             bindProduto();
             ProdutoBusinessService.save(produto);
+            Toast.makeText(this, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
             finish();
         }
     }

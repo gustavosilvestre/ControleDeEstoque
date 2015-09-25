@@ -29,7 +29,6 @@ public class ProdutoSyncTaskDelete extends AsyncTask<Produto,Void,Void>{
 
     }
 
-
     @Override
     protected Void doInBackground(Produto... produtos) {
         ProdutoBusinessService.delete(produtos[0]);
