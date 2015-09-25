@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/menu_produto_list_add"
+        android:icon="@mipmap/ic_action_add"
+        android:orderInCategory="100"
+        android:title="Adicionar Produto"
+        app:showAsAction="always" />
+
+</menu>

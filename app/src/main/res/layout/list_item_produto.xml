@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_produto_list_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Codigo : " />
+
+            <TextView
+                android:id="@+id/activity_produto_list_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome : " />
+
+            <TextView
+                android:id="@+id/activity_produto_list_descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descrição : " />
+
+            <TextView
+                android:id="@+id/activity_produto_list_estoque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estoque : " />
+
+            <TextView
+                android:id="@+id/activity_produto_list_estoqueMinimo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estoque Minimo : " />
+
+            <TextView
+                android:id="@+id/activity_produto_list_valorUnitario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Valor Unitário : " />
+
+        </LinearLayout>
+
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:background="#ff6861f0"
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
