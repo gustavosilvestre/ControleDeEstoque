@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -12,49 +11,48 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import java.util.List;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
-import br.com.cast.turmaformacao.controledeestoque.controllers.adapters.ProdutoAdapter;
-import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProdutoSyncTaskDelete;
-import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProdutoSyncTaskRefresh;
-import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.TarefaInterface;
-import br.com.cast.turmaformacao.controledeestoque.model.entities.Produto;
-import br.com.cast.turmaformacao.controledeestoque.model.service.ProdutoBusinessService;
+import br.com.cast.turmaformacao.controledeestoque.controllers.adapters.ProductAdapter;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskDelete;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskRefresh;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.TaskSyncInterface;
+import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
 
-public class ProdutoListActivity extends AppCompatActivity implements TarefaInterface{
+public class ProductListActivity extends AppCompatActivity implements TaskSyncInterface {
 
-    private ListView listViewProduto;
-    private Produto selectProduto;
-    public final static String PARAM_PRODUTO = "SELECT_PRODUTO";
+    private ListView listViewProduct;
+    private Product selectProduct;
+    public final static String PARAM_PRODUCT = "SELECT_PRODUCT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produto_list);
+        setContentView(R.layout.activity_product_list);
         bindListViewProduto();
     }
 
     private void bindListViewProduto() {
-        listViewProduto = (ListView) findViewById(R.id.activity_produto_list_listView);
-        registerForContextMenu(listViewProduto);
-        listViewProduto.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewProduct = (ListView) findViewById(R.id.activity_produto_list_listView);
+        registerForContextMenu(listViewProduct);
+        listViewProduct.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                ProdutoAdapter adapter = (ProdutoAdapter) listViewProduto.getAdapter();
-                selectProduto = adapter.getItem(position);
+                ProductAdapter adapter = (ProductAdapter) listViewProduct.getAdapter();
+                selectProduct = adapter.getItem(position);
                 return false;
             }
         });
 
     }
 
-    private void onUpdateList(List<Produto> lista) {
+    private void onUpdateList(List<Product> lista) {
 
-        listViewProduto.setAdapter(new ProdutoAdapter(ProdutoListActivity.this, lista));
-        ProdutoAdapter adapter = (ProdutoAdapter) listViewProduto.getAdapter();
+        listViewProduct.setAdapter(new ProductAdapter(ProductListActivity.this, lista));
+        ProductAdapter adapter = (ProductAdapter) listViewProduct.getAdapter();
         adapter.notifyDataSetChanged();
 
     }
@@ -62,19 +60,19 @@ public class ProdutoListActivity extends AppCompatActivity implements TarefaInte
     @Override
     protected void onResume() {
         super.onResume();
-        new ProdutoSyncTaskRefresh(this,this).execute();
+        new ProductSyncTaskRefresh(this,this).execute();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_produto_list, menu);
+        getMenuInflater().inflate(R.menu.menu_product_list, menu);
         return true;
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        getMenuInflater().inflate(R.menu.menu_context_produto, menu);
+        getMenuInflater().inflate(R.menu.menu_context_product, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
@@ -111,35 +109,33 @@ public class ProdutoListActivity extends AppCompatActivity implements TarefaInte
 
     private void onMenuContextEditar() {
 
-        Intent gotoProdutoForm = new Intent(ProdutoListActivity.this, ProdutoFormActivity.class);
-        gotoProdutoForm.putExtra(PARAM_PRODUTO, selectProduto);
+        Intent gotoProdutoForm = new Intent(ProductListActivity.this, ProductFormActivity.class);
+        gotoProdutoForm.putExtra(PARAM_PRODUCT, selectProduct);
         startActivity(gotoProdutoForm);
     }
 
     private void onMenuContextExcluir() {
 
-        new AlertDialog.Builder(ProdutoListActivity.this)
-                .setTitle("Confirmação")
-                .setMessage("Deseja realmente excluir esse produto ?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(ProductListActivity.this)
+                .setTitle(R.string.msg_confimation)
+                .setMessage(R.string.msg_confimation_delete_product)
+                .setPositiveButton(R.string.msg_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        new ProdutoSyncTaskDelete(ProdutoListActivity.this,ProdutoListActivity.this).execute(selectProduto);
+                        new ProductSyncTaskDelete(ProductListActivity.this,ProductListActivity.this).execute(selectProduct);
                     }
                 })
-                .setNeutralButton("No", null)
+                .setNeutralButton(R.string.msg_no, null)
                 .show();
     }
 
-
     private void onMenuAddClick() {
-        Intent gotoToProdutoFormActivity = new Intent(ProdutoListActivity.this, ProdutoFormActivity.class);
+        Intent gotoToProdutoFormActivity = new Intent(ProductListActivity.this, ProductFormActivity.class);
         startActivity(gotoToProdutoFormActivity);
     }
 
-
     @Override
-    public void sincronizeList(List<Produto> produtos) {
+    public void sincronizeList(List<Product> produtos) {
         onUpdateList(produtos);
     }
 }

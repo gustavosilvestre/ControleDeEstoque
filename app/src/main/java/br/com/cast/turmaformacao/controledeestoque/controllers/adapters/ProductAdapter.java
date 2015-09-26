@@ -6,23 +6,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.AccessibleObject;
 import java.util.List;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
-import br.com.cast.turmaformacao.controledeestoque.model.entities.Produto;
+import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
 /**
  * Created by Administrador on 25/09/2015.
  */
-public class ProdutoAdapter extends BaseAdapter {
+public class ProductAdapter extends BaseAdapter {
 
     private Activity context;
-    private List<Produto> lista;
+    private List<Product> lista;
 
-    public ProdutoAdapter(Activity context, List<Produto> lista) {
+    public ProductAdapter(Activity context, List<Product> lista) {
         this.context = context;
         this.lista = lista;
     }
@@ -33,7 +30,7 @@ public class ProdutoAdapter extends BaseAdapter {
     }
 
     @Override
-    public Produto getItem(int position) {
+    public Product getItem(int position) {
         return lista.get(position);
     }
 
@@ -47,21 +44,21 @@ public class ProdutoAdapter extends BaseAdapter {
 
         View view = context.getLayoutInflater().inflate(R.layout.list_item_produto,parent,false);
 
-        Produto produto = getItem(position);
+        Product produto = getItem(position);
 
         TextView id = (TextView) view.findViewById(R.id.activity_produto_list_id);
         TextView nome = (TextView) view.findViewById(R.id.activity_produto_list_nome);
         TextView descricao = (TextView) view.findViewById(R.id.activity_produto_list_descricao);
-        TextView quantidade = (TextView) view.findViewById(R.id.activity_produto_list_estoque);
-        TextView quantidadeMinima = (TextView) view.findViewById(R.id.activity_produto_list_estoqueMinimo);
+        TextView quantidade = (TextView) view.findViewById(R.id.activity_produto_list_quantidade);
+        TextView quantidadeMinima = (TextView) view.findViewById(R.id.activity_produto_list_quantidadeMinima);
         TextView valorUnitario = (TextView) view.findViewById(R.id.activity_produto_list_valorUnitario);
 
-        id.setText(id.getText().toString()+produto.getId().toString());
-        nome.setText(nome.getText().toString()+produto.getNome());
-        descricao.setText(descricao.getText().toString()+produto.getDescricao());
-        quantidade.setText(quantidade.getText().toString()+produto.getQuantidade().toString());
-        quantidadeMinima.setText(quantidadeMinima.getText().toString()+produto.getQuantidadeMinima().toString());
-        valorUnitario.setText(valorUnitario.getText().toString()+produto.getValorUnitario().toString());
+        id.setText(produto.getId().toString());
+        nome.setText(produto.getName());
+        descricao.setText(produto.getDescription());
+        quantidade.setText(produto.getStock().toString());
+        quantidadeMinima.setText(produto.getMinStock().toString());
+        valorUnitario.setText(produto.getUnitPrice().toString());
 
         return view;
     }

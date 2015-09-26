@@ -10,55 +10,63 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/activity_produto_form_nome"
+                android:id="@+id/activity_produto_form_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nome" />
+                android:hint="@string/lbl_product_name" />
 
             <EditText
-                android:id="@+id/activity_produto_form_descricao"
+                android:id="@+id/activity_produto_form_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Descricao" />
+                android:hint="@string/lbl_product_description" />
 
             <EditText
-                android:id="@+id/activity_produto_form_estoque"
+                android:id="@+id/activity_produto_form_stock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Estoque"
+                android:hint="@string/lbl_product_stock"
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/activity_produto_form_estoqueMinimo"
+                android:id="@+id/activity_produto_form_minStock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Estoque Mínimo"
+                android:hint="@string/lbl_product_minStock"
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/activity_produto_form_valorUnitario"
+                android:id="@+id/activity_produto_form_unitPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Valor Uniário"
+                android:hint="@string/lbl_product_unitPrice"
                 android:inputType="numberDecimal" />
 
         </LinearLayout>
 
-        <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:background="#ffd0d5cf"
-            android:layout_margin="10dp"
-            android:layout_weight="1.5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/activity_produto_form_ProductImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="#ffd0d5cf"
+        android:src="@mipmap/ic_launcher" />
+
+    <Button
+        android:id="@+id/activity_produto_form_buttonLoadImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_button_loadImage" />
 
 
 </LinearLayout>

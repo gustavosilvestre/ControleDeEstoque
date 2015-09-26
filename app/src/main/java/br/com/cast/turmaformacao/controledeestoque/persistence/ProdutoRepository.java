@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.List;
 
-import br.com.cast.turmaformacao.controledeestoque.model.entities.Produto;
+import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
 /**
  * Created by Administrador on 25/09/2015.
@@ -17,20 +17,20 @@ public final class ProdutoRepository {
         super();
     }
 
-    public static void save(Produto produto) {
+    public static void save(Product product) {
 
         DataBaseHelper dataBaseHelper = DataBaseHelper.getIstance();
         SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
-        ContentValues values = ProdutoContract.getContentValues(produto);
+        ContentValues values = ProdutoContract.getContentValues(product);
 
-        if (produto.getId() == null) {
+        if (product.getId() == null) {
 
             db.insert(ProdutoContract.TABLE, null, values);
 
         } else {
 
             String where = ProdutoContract.ID+" = ? ";
-            String[] params = {String.valueOf(produto.getId())};
+            String[] params = {String.valueOf(product.getId())};
 
             db.update(ProdutoContract.TABLE,values,where,params);
         }
@@ -40,14 +40,14 @@ public final class ProdutoRepository {
 
     }
 
-    public static List<Produto> findAll(){
+    public static List<Product> findAll(){
 
         DataBaseHelper dataBaseHelper = DataBaseHelper.getIstance();
         SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(ProdutoContract.TABLE, ProdutoContract.COLUNS, null, null, null, null, ProdutoContract.NOME);
+        Cursor cursor = db.query(ProdutoContract.TABLE, ProdutoContract.COLUNS, null, null, null, null, ProdutoContract.NAME);
 
-        List<Produto> lista = ProdutoContract.getProdutos(cursor);
+        List<Product> lista = ProdutoContract.getProduts(cursor);
 
         return lista;
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Controle De Estoque</string>
+    <string name="lbl_product_name">Nome</string>
+    <string name="lbl_product_description">Descricao</string>
+    <string name="lbl_product_stock">Estoque</string>
+    <string name="lbl_product_minStock">Estoque Mínimo</string>
+    <string name="lbl_product_unitPrice">Valor Uniário</string>
+    <string name="lbl_menu_edit">Editar</string>
+    <string name="msg_requiredField">Campo Obrigatório</string>
+    <string name="msg_confimation">Confirmação</string>
+    <string name="msg_confimation_delete_product">Deseja realmente excluir esse produto ?</string>
+    <string name="msg_deleting_product">Deletando o produto…</string>
+    <string name="msg_updating_product_list">Atualizando Lista de Produtos</string>
+    <string name="msg_yes">Sim</string>
+    <string name="msg_no">Não</string>
+    <string name="lbl_list_item_product_code">Código : </string>
+    <string name="lbl_list_item_product_name">Nome : </string>
+    <string name="lbl_list_item_product_description">Descrição : </string>
+    <string name="lbl_list_item_produtct_stock">Quantidade : </string>
+    <string name="lbl_list_item_product_minStock">Quantidade Mínima : </string>
+    <string name="lbl_list_item_product_unitPrice">Valor Unitário : </string>
+    <string name="lbl_button_loadImage">Carregar Imagem</string>
+</resources>

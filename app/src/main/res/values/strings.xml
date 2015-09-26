@@ -1,6 +1,24 @@
 <resources>
-    <string name="app_name">Controle De Estoque</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Stock Manager</string>
+    <string name="lbl_product_name">Name</string>
+    <string name="lbl_product_description">Description</string>
+    <string name="lbl_product_stock">Stock</string>
+    <string name="lbl_product_minStock">Min Stock</string>
+    <string name="lbl_product_unitPrice">Unit Price</string>
+    <string name="lbl_menu_edit">Edit</string>
+    <string name="lbl_menu_delete">Delete</string>
+    <string name="msg_requiredField">Required Field</string>
+    <string name="msg_confimation">Confirmation</string>
+    <string name="msg_confimation_delete_product">Really want to delete this product?</string>
+    <string name="msg_deleting_product">Deleting a product…</string>
+    <string name="msg_updating_product_list">Updating a product list…</string>
+    <string name="msg_yes">Yes</string>
+    <string name="msg_no">No</string>
+    <string name="lbl_list_item_product_code">Code : </string>
+    <string name="lbl_list_item_product_name">Name : </string>
+    <string name="lbl_list_item_product_description">Description : </string>
+    <string name="lbl_list_item_produtct_stock">Stock : </string>
+    <string name="lbl_list_item_product_minStock">Min Stock : </string>
+    <string name="lbl_list_item_product_unitPrice">Unit Price : </string>
+    <string name="lbl_button_loadImage">Load Image</string>
 </resources>

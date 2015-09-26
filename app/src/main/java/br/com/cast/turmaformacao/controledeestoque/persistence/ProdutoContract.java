@@ -2,12 +2,11 @@ package br.com.cast.turmaformacao.controledeestoque.persistence;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.graphics.ColorFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.cast.turmaformacao.controledeestoque.model.entities.Produto;
+import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
 /**
  * Created by Administrador on 25/09/2015.
@@ -16,54 +15,54 @@ public class ProdutoContract {
 
     public final static String TABLE = "produto";
     public final static String ID = "id";
-    public final static String NOME = "nome";
-    public final static String DESCRICAO = "descricao";
-    public final static String QUANTIDADE = "quantidade";
-    public final static String QUANTIDADE_MINIMA = "quantidademinima";
-    public final static String VALOR_UNITARIO = "valorunitario";
-    public final static String FOTO = "foto";
+    public final static String NAME = "name";
+    public final static String DESCRIPTION = "description";
+    public final static String STOCK = "stock";
+    public final static String MIN_STOCK = "minstock";
+    public final static String UNIT_PRICE = "unitprice";
+    public final static String IMAGE = "image";
 
-    public final static String[] COLUNS = {ID, NOME, DESCRICAO, QUANTIDADE, QUANTIDADE_MINIMA, VALOR_UNITARIO,FOTO};
+    public final static String[] COLUNS = {ID, NAME, DESCRIPTION, STOCK, MIN_STOCK, UNIT_PRICE, IMAGE};
 
-    public static ContentValues getContentValues(Produto produto) {
+    public static ContentValues getContentValues(Product produto) {
 
         ContentValues values = new ContentValues();
 
         values.put(ID, produto.getId());
-        values.put(NOME, produto.getNome());
-        values.put(DESCRICAO, produto.getDescricao());
-        values.put(QUANTIDADE, produto.getQuantidade());
-        values.put(QUANTIDADE_MINIMA, produto.getQuantidadeMinima());
-        values.put(VALOR_UNITARIO, produto.getValorUnitario());
-        values.put(FOTO,produto.getFoto());
+        values.put(NAME, produto.getName());
+        values.put(DESCRIPTION, produto.getDescription());
+        values.put(STOCK, produto.getStock());
+        values.put(MIN_STOCK, produto.getMinStock());
+        values.put(UNIT_PRICE, produto.getUnitPrice());
+        values.put(IMAGE,produto.getImage());
 
         return values;
     }
 
-    public static Produto getProduto(Cursor cursor) {
+    public static Product getProduct(Cursor cursor) {
 
         while (!cursor.isBeforeFirst() || cursor.moveToNext()) {
-            Produto produto = new Produto();
-            produto.setId(cursor.getLong(cursor.getColumnIndex(ID)));
-            produto.setNome(cursor.getString(cursor.getColumnIndex(NOME)));
-            produto.setDescricao(cursor.getString(cursor.getColumnIndex(DESCRICAO)));
-            produto.setQuantidade(cursor.getInt(cursor.getColumnIndex(QUANTIDADE)));
-            produto.setQuantidadeMinima(cursor.getInt(cursor.getColumnIndex(QUANTIDADE_MINIMA)));
-            produto.setValorUnitario(cursor.getDouble(cursor.getColumnIndex(VALOR_UNITARIO)));
-            produto.setFoto(cursor.getString(cursor.getColumnIndex(FOTO)));
-            return produto;
+            Product product = new Product();
+            product.setId(cursor.getLong(cursor.getColumnIndex(ID)));
+            product.setName(cursor.getString(cursor.getColumnIndex(NAME)));
+            product.setDescription(cursor.getString(cursor.getColumnIndex(DESCRIPTION)));
+            product.setStock(cursor.getInt(cursor.getColumnIndex(STOCK)));
+            product.setMinStock(cursor.getInt(cursor.getColumnIndex(MIN_STOCK)));
+            product.setUnitPrice(cursor.getDouble(cursor.getColumnIndex(UNIT_PRICE)));
+            product.setImage(cursor.getString(cursor.getColumnIndex(IMAGE)));
+            return product;
         }
 
         return null;
     }
 
-    public static List<Produto> getProdutos(Cursor cursor) {
+    public static List<Product> getProduts(Cursor cursor) {
 
-        List<Produto> lista = new ArrayList<>();
+        List<Product> lista = new ArrayList<>();
 
         while (cursor.moveToNext()) {
 
-            lista.add(getProduto(cursor));
+            lista.add(getProduct(cursor));
         }
 
         return lista;
@@ -75,12 +74,12 @@ public class ProdutoContract {
         create.append(" CREATE TABLE PRODUTO ");
         create.append(" ( ");
         create.append(ID + " INTEGER PRIMARY KEY, ");
-        create.append(NOME + " TEXT NOT NULL, ");
-        create.append(DESCRICAO + " TEXT NOT NULL, ");
-        create.append(QUANTIDADE + " INTEGER DEFAULT 0, ");
-        create.append(QUANTIDADE_MINIMA + " INTEGER DEFAULT 0, ");
-        create.append(VALOR_UNITARIO + " DOUBLE NOT NULL, ");
-        create.append(FOTO+" TEXT ");
+        create.append(NAME + " TEXT NOT NULL, ");
+        create.append(DESCRIPTION + " TEXT NOT NULL, ");
+        create.append(STOCK + " INTEGER DEFAULT 0, ");
+        create.append(MIN_STOCK + " INTEGER DEFAULT 0, ");
+        create.append(UNIT_PRICE + " DOUBLE NOT NULL, ");
+        create.append(IMAGE +" TEXT ");
         create.append(" ); ");
 
         return create.toString();
