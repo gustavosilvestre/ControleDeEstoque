@@ -30,7 +30,7 @@
             <EditText
                 android:id="@+id/activity_produto_form_stock"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="@string/lbl_product_stock"
                 android:inputType="number" />
 

@@ -16,24 +16,27 @@ public class Product implements Parcelable {
     private Double unitPrice;
     private String image;
 
+    public Product() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Product produto = (Product) o;
+        Product product = (Product) o;
 
-        if (id != null ? !id.equals(produto.id) : produto.id != null) return false;
-        if (name != null ? !name.equals(produto.name) : produto.name != null) return false;
-        if (description != null ? !description.equals(produto.description) : produto.description != null)
+        if (id != null ? !id.equals(product.id) : product.id != null) return false;
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        if (description != null ? !description.equals(product.description) : product.description != null)
             return false;
-        if (stock != null ? !stock.equals(produto.stock) : produto.stock != null)
+        if (stock != null ? !stock.equals(product.stock) : product.stock != null)
             return false;
-        if (minStock != null ? !minStock.equals(produto.minStock) : produto.minStock != null)
+        if (minStock != null ? !minStock.equals(product.minStock) : product.minStock != null)
             return false;
-        if (unitPrice != null ? !unitPrice.equals(produto.unitPrice) : produto.unitPrice != null)
+        if (unitPrice != null ? !unitPrice.equals(product.unitPrice) : product.unitPrice != null)
             return false;
-        return !(image != null ? !image.equals(produto.image) : produto.image != null);
+        return !(image != null ? !image.equals(product.image) : product.image != null);
 
     }
 
@@ -105,10 +108,6 @@ public class Product implements Parcelable {
         this.unitPrice = unitPrice;
     }
 
-    public static Creator<Product> getCREATOR() {
-        return CREATOR;
-    }
-
 
     @Override
     public int describeContents() {
@@ -120,22 +119,19 @@ public class Product implements Parcelable {
         dest.writeValue(this.id);
         dest.writeString(this.name);
         dest.writeString(this.description);
-        dest.writeInt(this.stock);
-        dest.writeInt(this.minStock);
-        dest.writeDouble(this.unitPrice);
+        dest.writeValue(this.stock);
+        dest.writeValue(this.minStock);
+        dest.writeValue(this.unitPrice);
         dest.writeString(this.image);
-    }
-
-    public Product() {
     }
 
     protected Product(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
         this.name = in.readString();
         this.description = in.readString();
-        this.stock = in.readInt();
-        this.minStock = in.readInt();
-        this.unitPrice = in.readDouble();
+        this.stock = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.minStock = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.unitPrice = (Double) in.readValue(Double.class.getClassLoader());
         this.image = in.readString();
     }
 

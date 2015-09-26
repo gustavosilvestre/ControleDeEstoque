@@ -17,8 +17,8 @@
     <string name="lbl_list_item_product_code">Código : </string>
     <string name="lbl_list_item_product_name">Nome : </string>
     <string name="lbl_list_item_product_description">Descrição : </string>
-    <string name="lbl_list_item_produtct_stock">Quantidade : </string>
-    <string name="lbl_list_item_product_minStock">Quantidade Mínima : </string>
+    <string name="lbl_list_item_product_stock">Estoque : </string>
+    <string name="lbl_list_item_product_minStock">Estoque Mínimo : </string>
     <string name="lbl_list_item_product_unitPrice">Valor Unitário : </string>
     <string name="lbl_button_loadImage">Carregar Imagem</string>
 </resources>

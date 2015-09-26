@@ -41,7 +41,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_nome"
+                    android:id="@+id/activity_produto_list_name"
                     android:text="Nome" />
             </TableRow>
 
@@ -52,18 +52,18 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_descricao"
+                    android:id="@+id/activity_produto_list_description"
                     android:text="Descrição" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text="@string/lbl_list_item_produtct_stock"
+                    android:text="@string/lbl_list_item_product_stock"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_quantidade"
+                    android:id="@+id/activity_produto_list_stock"
                     android:text="Quantidade" />
             </TableRow>
 
@@ -74,7 +74,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_quantidadeMinima"
+                    android:id="@+id/activity_produto_list_minStock"
                     android:text="Quantidade minima" />
             </TableRow>
 
@@ -85,7 +85,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_valorUnitario"
+                    android:id="@+id/activity_produto_list_unitPrice"
                     android:text="Valor Unitário" />
             </TableRow>
         </TableLayout>

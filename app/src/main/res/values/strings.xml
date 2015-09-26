@@ -17,7 +17,7 @@
     <string name="lbl_list_item_product_code">Code : </string>
     <string name="lbl_list_item_product_name">Name : </string>
     <string name="lbl_list_item_product_description">Description : </string>
-    <string name="lbl_list_item_produtct_stock">Stock : </string>
+    <string name="lbl_list_item_product_stock">Stock : </string>
     <string name="lbl_list_item_product_minStock">Min Stock : </string>
     <string name="lbl_list_item_product_unitPrice">Unit Price : </string>
     <string name="lbl_button_loadImage">Load Image</string>
