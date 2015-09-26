@@ -17,7 +17,7 @@ import br.com.cast.turmaformacao.controledeestoque.util.FormerHelper;
 /**
  * Created by Administrador on 25/09/2015.
  */
-public class ProdutoFormActivity extends AppCompatActivity {
+public class ProdutoFormActivity extends AppCompatActivity  {
 
     private Produto produto;
     private EditText editTextNome;
@@ -91,9 +91,8 @@ public class ProdutoFormActivity extends AppCompatActivity {
 
         if (!FormerHelper.validateRequired(requiredMessage, editTextNome, editTextDescricao, editTextQuantidade, editTextValorUnitario, editTextQuantidadeMinima)) {
             bindProduto();
-            ProdutoBusinessService.save(produto);
-            Toast.makeText(this, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-            finish();
+            new ProdutoSyncTaskSave(this).execute(produto);
+
         }
     }
 

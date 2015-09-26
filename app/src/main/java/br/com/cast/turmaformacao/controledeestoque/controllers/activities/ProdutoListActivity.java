@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -17,11 +18,13 @@ import java.util.List;
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.adapters.ProdutoAdapter;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProdutoSyncTaskDelete;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProdutoSyncTaskRefresh;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.TarefaInterface;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Produto;
 import br.com.cast.turmaformacao.controledeestoque.model.service.ProdutoBusinessService;
 
 
-public class ProdutoListActivity extends AppCompatActivity {
+public class ProdutoListActivity extends AppCompatActivity implements TarefaInterface{
 
     private ListView listViewProduto;
     private Produto selectProduto;
@@ -48,9 +51,8 @@ public class ProdutoListActivity extends AppCompatActivity {
 
     }
 
-    private void onUpdateList() {
+    private void onUpdateList(List<Produto> lista) {
 
-        List<Produto> lista = ProdutoBusinessService.findAll();
         listViewProduto.setAdapter(new ProdutoAdapter(ProdutoListActivity.this, lista));
         ProdutoAdapter adapter = (ProdutoAdapter) listViewProduto.getAdapter();
         adapter.notifyDataSetChanged();
@@ -60,7 +62,7 @@ public class ProdutoListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        onUpdateList();
+        new ProdutoSyncTaskRefresh(this,this).execute();
     }
 
     @Override
@@ -122,22 +124,22 @@ public class ProdutoListActivity extends AppCompatActivity {
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        new ProdutoSyncTaskDelete(ProdutoListActivity.this).execute(selectProduto);
-                       // ProdutoBusinessService.delete(selectProduto);
-                       // Toast.makeText(ProdutoListActivity.this, "Produto excluido com sucesso!", Toast.LENGTH_LONG).show();
-                       // onUpdateList();
+                        new ProdutoSyncTaskDelete(ProdutoListActivity.this,ProdutoListActivity.this).execute(selectProduto);
                     }
                 })
                 .setNeutralButton("No", null)
                 .show();
     }
 
-    private void limparCampos() {
-
-    }
 
     private void onMenuAddClick() {
         Intent gotoToProdutoFormActivity = new Intent(ProdutoListActivity.this, ProdutoFormActivity.class);
         startActivity(gotoToProdutoFormActivity);
+    }
+
+
+    @Override
+    public void sincronizeList(List<Produto> produtos) {
+        onUpdateList(produtos);
     }
 }

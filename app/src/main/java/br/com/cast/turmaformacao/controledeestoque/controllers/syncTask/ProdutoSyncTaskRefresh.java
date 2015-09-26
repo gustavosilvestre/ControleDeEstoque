@@ -1,6 +1,9 @@
 package br.com.cast.turmaformacao.controledeestoque.controllers.syncTask;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
@@ -14,12 +17,36 @@ import br.com.cast.turmaformacao.controledeestoque.model.service.ProdutoBusiness
 /**
  * Created by Administrador on 25/09/2015.
  */
-public abstract class ProdutoSyncTaskRefresh extends AsyncTask<View,Void,List<Produto>>{
+public class ProdutoSyncTaskRefresh extends AsyncTask<Void,Void,List<Produto>>{
 
+    private ProgressDialog progressDialog;
+    private Activity context;
+    private TarefaInterface activity;
+
+    public ProdutoSyncTaskRefresh(Activity context, TarefaInterface activity) {
+        this.context = context;
+        this.activity = activity;
+        progressDialog = new ProgressDialog(context);
+    }
 
     @Override
-    protected List<Produto> doInBackground(View... views) {
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog.setMessage("Atualizando Lista de Produtos");
+        progressDialog.show();
+    }
+
+    @Override
+    protected List<Produto> doInBackground(Void... params) {
         List<Produto> lista = ProdutoBusinessService.findAll();
-        return null;
+        return lista;
+    }
+
+    @Override
+    protected void onPostExecute(List<Produto> produtos) {
+        super.onPostExecute(produtos);
+        activity.sincronizeList(produtos);
+        progressDialog.dismiss();
+
     }
 }
