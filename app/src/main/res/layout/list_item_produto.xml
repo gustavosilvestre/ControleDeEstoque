@@ -11,11 +11,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher" />
 
         <TableLayout
@@ -30,7 +30,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_id"
+                    android:id="@+id/list_item_product_id"
                     android:text="1" />
             </TableRow>
 
@@ -41,7 +41,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_name"
+                    android:id="@+id/list_item_product_name"
                     android:text="Nome" />
             </TableRow>
 
@@ -52,7 +52,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_description"
+                    android:id="@+id/list_item_product_description"
                     android:text="Descrição" />
             </TableRow>
 
@@ -63,7 +63,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_stock"
+                    android:id="@+id/list_item_product_stock"
                     android:text="Quantidade" />
             </TableRow>
 
@@ -74,7 +74,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_minStock"
+                    android:id="@+id/list_item_product_minStock"
                     android:text="Quantidade minima" />
             </TableRow>
 
@@ -85,7 +85,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/activity_produto_list_unitPrice"
+                    android:id="@+id/list_item_product_unitPrice"
                     android:text="Valor Unitário" />
             </TableRow>
         </TableLayout>

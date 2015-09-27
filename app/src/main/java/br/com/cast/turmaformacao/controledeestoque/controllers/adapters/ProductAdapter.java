@@ -46,12 +46,12 @@ public class ProductAdapter extends BaseAdapter {
 
         Product produto = getItem(position);
 
-        TextView id = (TextView) view.findViewById(R.id.activity_produto_list_id);
-        TextView name = (TextView) view.findViewById(R.id.activity_produto_list_name);
-        TextView description = (TextView) view.findViewById(R.id.activity_produto_list_description);
-        TextView stock = (TextView) view.findViewById(R.id.activity_produto_list_stock);
-        TextView minStock = (TextView) view.findViewById(R.id.activity_produto_list_minStock);
-        TextView unitPrice = (TextView) view.findViewById(R.id.activity_produto_list_unitPrice);
+        TextView id = (TextView) view.findViewById(R.id.list_item_product_id);
+        TextView name = (TextView) view.findViewById(R.id.list_item_product_name);
+        TextView description = (TextView) view.findViewById(R.id.list_item_product_description);
+        TextView stock = (TextView) view.findViewById(R.id.list_item_product_stock);
+        TextView minStock = (TextView) view.findViewById(R.id.list_item_product_minStock);
+        TextView unitPrice = (TextView) view.findViewById(R.id.list_item_product_unitPrice);
 
         id.setText(produto.getId().toString());
         name.setText(produto.getName());
