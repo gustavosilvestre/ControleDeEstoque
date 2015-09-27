@@ -47,9 +47,9 @@ public class ProductAdapter extends BaseAdapter {
 
         View view;
 
-        if(convertView == null){
-            view = context.getLayoutInflater().inflate(R.layout.list_item_produto,parent,false);
-        }else{
+        if (convertView == null) {
+            view = context.getLayoutInflater().inflate(R.layout.list_item_produto, parent, false);
+        } else {
             view = convertView;
         }
 
@@ -70,9 +70,12 @@ public class ProductAdapter extends BaseAdapter {
         minStock.setText(produto.getMinStock().toString());
         unitPrice.setText(produto.getUnitPrice().toString());
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(produto.getImage(), 0, produto.getImage().length);
-        Bitmap no_image;
-        productImage.setImageBitmap(bitmap);
+        try {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(produto.getImage(), 0, produto.getImage().length);
+            productImage.setImageBitmap(bitmap);
+        }catch (Exception e){
+            productImage.setImageResource(R.drawable.no_image_found);
+        }
 
         return view;
     }
