@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.activities.ProductListActivity;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 import br.com.cast.turmaformacao.controledeestoque.model.service.ProductBusinessService;
@@ -26,7 +27,7 @@ public class ProductSyncTaskSave extends AsyncTask<Product, Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog.setMessage("Aguarde...");
+        progressDialog.setMessage(context.getString(R.string.msg_wait));
         progressDialog.show();
     }
 
@@ -40,7 +41,7 @@ public class ProductSyncTaskSave extends AsyncTask<Product, Void, Void> {
     protected void onPostExecute(Void produtos) {
         super.onPostExecute(produtos);
         progressDialog.dismiss();
-        Toast.makeText(context, "Product salvo com sucesso!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.msg_product_save_successfully), Toast.LENGTH_SHORT).show();
         Intent gotoList = new Intent(context, ProductListActivity.class);
         context.startActivity(gotoList);
         context.finish();

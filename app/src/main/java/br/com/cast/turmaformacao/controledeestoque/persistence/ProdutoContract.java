@@ -49,7 +49,10 @@ public class ProdutoContract {
             product.setStock(cursor.getInt(cursor.getColumnIndex(STOCK)));
             product.setMinStock(cursor.getInt(cursor.getColumnIndex(MIN_STOCK)));
             product.setUnitPrice(cursor.getDouble(cursor.getColumnIndex(UNIT_PRICE)));
-            product.setImage(cursor.getString(cursor.getColumnIndex(IMAGE)));
+            byte[] blob = cursor.getBlob(cursor.getColumnIndex(IMAGE));
+            product.setImage(blob);
+
+
             return product;
         }
 
@@ -79,7 +82,7 @@ public class ProdutoContract {
         create.append(STOCK + " INTEGER DEFAULT 0, ");
         create.append(MIN_STOCK + " INTEGER DEFAULT 0, ");
         create.append(UNIT_PRICE + " DOUBLE NOT NULL, ");
-        create.append(IMAGE +" TEXT ");
+        create.append(IMAGE +" BLOB ");
         create.append(" ); ");
 
         return create.toString();

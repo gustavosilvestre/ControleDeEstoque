@@ -5,8 +5,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import java.util.List;
-
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 import br.com.cast.turmaformacao.controledeestoque.model.service.ProductBusinessService;
@@ -14,7 +12,7 @@ import br.com.cast.turmaformacao.controledeestoque.model.service.ProductBusiness
 /**
  * Created by Administrador on 25/09/2015.
  */
-public class ProductSyncTaskDelete extends AsyncTask<Product,String,List<Product>>{
+public class ProductSyncTaskDelete extends AsyncTask<Product,String,Void>{
 
     private ProgressDialog progressDialog;
     private Activity context;
@@ -35,11 +33,10 @@ public class ProductSyncTaskDelete extends AsyncTask<Product,String,List<Product
     }
 
     @Override
-    protected List<Product> doInBackground(Product... produtos) {
+    protected Void doInBackground(Product... produtos) {
         ProductBusinessService.delete(produtos[0]);
         publishProgress(context.getString(R.string.msg_updating_product_list));
-        List<Product> lista = ProductBusinessService.findAll();
-        return lista;
+        return null;
     }
 
     @Override
@@ -48,10 +45,10 @@ public class ProductSyncTaskDelete extends AsyncTask<Product,String,List<Product
     }
 
     @Override
-    protected void onPostExecute(List<Product> lista) {
+    protected void onPostExecute(Void lista) {
         super.onPostExecute(lista);
         progressDialog.dismiss();
-        Toast.makeText(context,"Product deletado com sucesso!",Toast.LENGTH_SHORT).show();
-        activity.sincronizeList(lista);
+        Toast.makeText(context, R.string.msg_product_delete_successfully,Toast.LENGTH_SHORT).show();
+        activity.refreshList();
     }
 }

@@ -16,33 +16,33 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/activity_produto_form_name"
+                android:id="@+id/activity_product_form_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/lbl_product_name" />
 
             <EditText
-                android:id="@+id/activity_produto_form_description"
+                android:id="@+id/activity_product_form_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/lbl_product_description" />
 
             <EditText
-                android:id="@+id/activity_produto_form_stock"
+                android:id="@+id/activity_product_form_stock"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/lbl_product_stock"
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/activity_produto_form_minStock"
+                android:id="@+id/activity_product_form_minStock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/lbl_product_minStock"
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/activity_produto_form_unitPrice"
+                android:id="@+id/activity_product_form_unitPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/lbl_product_unitPrice"
@@ -54,19 +54,36 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/activity_produto_form_ProductImage"
+        android:id="@+id/activity_product_form_productImage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:background="#ffd0d5cf"
-        android:src="@mipmap/ic_launcher" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/no_image_found" />
 
-    <Button
-        android:id="@+id/activity_produto_form_buttonLoadImage"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_button_loadImage" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/activity_product_form_buttonLoadImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_button_loadImage" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/activity_product_form_buttonTakePicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_button_takePicture" />
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

@@ -8,8 +8,8 @@
     <string name="lbl_menu_edit">Edit</string>
     <string name="lbl_menu_delete">Delete</string>
     <string name="msg_requiredField">Required Field</string>
-    <string name="msg_confimation">Confirmation</string>
-    <string name="msg_confimation_delete_product">Really want to delete this product?</string>
+    <string name="msg_confirmation">Confirmation</string>
+    <string name="msg_confirmation_delete_product">Really want to delete this product?</string>
     <string name="msg_deleting_product">Deleting a product…</string>
     <string name="msg_updating_product_list">Updating a product list…</string>
     <string name="msg_yes">Yes</string>
@@ -21,4 +21,8 @@
     <string name="lbl_list_item_product_minStock">Min Stock : </string>
     <string name="lbl_list_item_product_unitPrice">Unit Price : </string>
     <string name="lbl_button_loadImage">Load Image</string>
+    <string name="msg_product_delete_successfully">Product has been delete successfully!</string>
+    <string name="lbl_button_takePicture">Take Picture</string>
+    <string name="msg_wait">Wait…</string>
+    <string name="msg_product_save_successfully">Product has been save successfully!</string>
 </resources>

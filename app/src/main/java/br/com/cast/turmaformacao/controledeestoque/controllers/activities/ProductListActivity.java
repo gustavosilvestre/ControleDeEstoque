@@ -22,7 +22,7 @@ import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.TaskSync
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
 
-public class ProductListActivity extends AppCompatActivity implements TaskSyncInterface {
+public class ProductListActivity extends AppCompatActivity implements TaskSyncInterface<Product> {
 
     private ListView listViewProduct;
     private Product selectProduct;
@@ -60,7 +60,7 @@ public class ProductListActivity extends AppCompatActivity implements TaskSyncIn
     @Override
     protected void onResume() {
         super.onResume();
-        new ProductSyncTaskRefresh(this,this).execute();
+        refreshList();
     }
 
     @Override
@@ -117,8 +117,8 @@ public class ProductListActivity extends AppCompatActivity implements TaskSyncIn
     private void onMenuContextExcluir() {
 
         new AlertDialog.Builder(ProductListActivity.this)
-                .setTitle(R.string.msg_confimation)
-                .setMessage(R.string.msg_confimation_delete_product)
+                .setTitle(R.string.msg_confirmation)
+                .setMessage(R.string.msg_confirmation_delete_product)
                 .setPositiveButton(R.string.msg_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -135,7 +135,14 @@ public class ProductListActivity extends AppCompatActivity implements TaskSyncIn
     }
 
     @Override
+    public void refreshList() {
+        new ProductSyncTaskRefresh(this,this).execute();
+    }
+
+    @Override
     public void sincronizeList(List<Product> produtos) {
         onUpdateList(produtos);
     }
+
+
 }

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.cast.turmaformacao.controledeestoque">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="ANDROID.PERMISSION.INTERNET"/>
+
     <application
         android:name=".applicationManager.ApplicationManager"
         android:allowBackup="true"

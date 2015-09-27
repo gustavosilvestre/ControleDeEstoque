@@ -14,7 +14,7 @@ public class Product implements Parcelable {
     private Integer stock;
     private Integer minStock;
     private Double unitPrice;
-    private String image;
+    private byte[] image;
 
     public Product() {
     }
@@ -52,11 +52,11 @@ public class Product implements Parcelable {
         return result;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -122,7 +122,7 @@ public class Product implements Parcelable {
         dest.writeValue(this.stock);
         dest.writeValue(this.minStock);
         dest.writeValue(this.unitPrice);
-        dest.writeString(this.image);
+        dest.writeByteArray(this.image);
     }
 
     protected Product(Parcel in) {
@@ -132,10 +132,10 @@ public class Product implements Parcelable {
         this.stock = (Integer) in.readValue(Integer.class.getClassLoader());
         this.minStock = (Integer) in.readValue(Integer.class.getClassLoader());
         this.unitPrice = (Double) in.readValue(Double.class.getClassLoader());
-        this.image = in.readString();
+        this.image = in.createByteArray();
     }
 
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
         public Product createFromParcel(Parcel source) {
             return new Product(source);
         }
