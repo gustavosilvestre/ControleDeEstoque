@@ -5,7 +5,7 @@
     <string name="lbl_product_description">Descrição</string>
     <string name="lbl_product_stock">Estoque</string>
     <string name="lbl_product_minStock">Estoque Mínimo</string>
-    <string name="lbl_product_unitPrice">Valor Uniário</string>
+    <string name="lbl_product_unitPrice">Valor Unitário</string>
     <string name="lbl_menu_edit">Editar</string>
     <string name="msg_requiredField">Campo Obrigatório</string>
     <string name="msg_confirmation">Confirmação</string>

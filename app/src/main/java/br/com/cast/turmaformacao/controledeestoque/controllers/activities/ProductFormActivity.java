@@ -117,19 +117,17 @@ public class ProductFormActivity extends AppCompatActivity {
                     }
 
                     break;
-
             }
-
         }
-
     }
+
 
     private void bindImagemViewProduto() {
         imageViewProduct = (ImageView) findViewById(R.id.activity_product_form_productImage);
-
         if(produto.getImage() == null)
             return;
 
+        selectImageArray = produto.getImage();
         imageViewProduct.setImageBitmap(BitmapFactory.decodeByteArray(produto.getImage(),0,produto.getImage().length));
 
     }
