@@ -9,6 +9,7 @@ import android.widget.Toast;
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.activities.ProductListActivity;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
+import br.com.cast.turmaformacao.controledeestoque.model.http.ProductService;
 import br.com.cast.turmaformacao.controledeestoque.model.service.ProductBusinessService;
 
 /**
@@ -34,6 +35,7 @@ public class ProductSyncTaskSave extends AsyncTask<Product, Void, Void> {
     @Override
     protected Void doInBackground(Product... produtos) {
         ProductBusinessService.save(produtos[0]);
+        ProductService.save(produtos[0]);
         return null;
     }
 

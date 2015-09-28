@@ -3,18 +3,44 @@ package br.com.cast.turmaformacao.controledeestoque.model.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Administrador on 25/09/2015.
  */
 public class Product implements Parcelable {
 
+    @JsonIgnore
     private Long id;
+
+    @JsonProperty("id")
+    private Long id_web;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("description")
     private String description;
-    private Integer stock;
-    private Integer minStock;
+
+    @JsonProperty("stock")
+    private Long stock;
+
+    @JsonProperty("minimunStock")
+    private Long minStock;
+
+    @JsonProperty("unitaryValue")
     private Double unitPrice;
-    private byte[] image;
+
+    @JsonProperty("image")
+    private String image;
+
+    @JsonProperty("date")
+    private Long data;
+
+    @JsonIgnore
+    private Boolean flag;
 
     public Product() {
     }
@@ -27,11 +53,11 @@ public class Product implements Parcelable {
         Product product = (Product) o;
 
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
+        if (id_web != null ? !id_web.equals(product.id_web) : product.id_web != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (description != null ? !description.equals(product.description) : product.description != null)
             return false;
-        if (stock != null ? !stock.equals(product.stock) : product.stock != null)
-            return false;
+        if (stock != null ? !stock.equals(product.stock) : product.stock != null) return false;
         if (minStock != null ? !minStock.equals(product.minStock) : product.minStock != null)
             return false;
         if (unitPrice != null ? !unitPrice.equals(product.unitPrice) : product.unitPrice != null)
@@ -43,6 +69,7 @@ public class Product implements Parcelable {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (id_web != null ? id_web.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (stock != null ? stock.hashCode() : 0);
@@ -52,11 +79,36 @@ public class Product implements Parcelable {
         return result;
     }
 
-    public byte[] getImage() {
+
+    public Boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
+    }
+
+    public Long getData() {
+        return data;
+    }
+
+    public void setData(Long data) {
+        this.data = data;
+    }
+
+    public Long getId_web() {
+        return id_web;
+    }
+
+    public void setId_web(Long id_web) {
+        this.id_web = id_web;
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -84,19 +136,19 @@ public class Product implements Parcelable {
         this.description = description;
     }
 
-    public Integer getStock() {
+    public Long getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(Long stock) {
         this.stock = stock;
     }
 
-    public Integer getMinStock() {
+    public Long getMinStock() {
         return minStock;
     }
 
-    public void setMinStock(Integer minStock) {
+    public void setMinStock(Long minStock) {
         this.minStock = minStock;
     }
 
@@ -117,29 +169,34 @@ public class Product implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
+        dest.writeValue(this.id_web);
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeValue(this.stock);
         dest.writeValue(this.minStock);
         dest.writeValue(this.unitPrice);
-        dest.writeByteArray(this.image);
+        dest.writeString(this.image);
+        dest.writeValue(this.data);
+        dest.writeValue(this.flag);
     }
 
     protected Product(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.id_web = (Long) in.readValue(Long.class.getClassLoader());
         this.name = in.readString();
         this.description = in.readString();
-        this.stock = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.minStock = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.stock = (Long) in.readValue(Integer.class.getClassLoader());
+        this.minStock = (Long) in.readValue(Integer.class.getClassLoader());
         this.unitPrice = (Double) in.readValue(Double.class.getClassLoader());
-        this.image = in.createByteArray();
+        this.image = in.readString();
+        this.data = (Long) in.readValue(Long.class.getClassLoader());
+        this.flag = (Boolean) in.readValue(Boolean.class.getClassLoader());
     }
 
     public static final Creator<Product> CREATOR = new Creator<Product>() {
         public Product createFromParcel(Parcel source) {
             return new Product(source);
         }
-
         public Product[] newArray(int size) {
             return new Product[size];
         }

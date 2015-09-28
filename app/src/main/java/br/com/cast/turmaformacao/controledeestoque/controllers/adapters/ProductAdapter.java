@@ -3,16 +3,22 @@ package br.com.cast.turmaformacao.controledeestoque.controllers.adapters;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductBitmapTask;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
+import br.com.cast.turmaformacao.controledeestoque.util.BitmapHelper;
 
 /**
  * Created by Administrador on 25/09/2015.
@@ -70,12 +76,16 @@ public class ProductAdapter extends BaseAdapter {
         minStock.setText(produto.getMinStock().toString());
         unitPrice.setText(produto.getUnitPrice().toString());
 
+        new ProductBitmapTask(produto.getImage(),productImage).execute();
+
+        /*
         try {
             Bitmap bitmap = BitmapFactory.decodeByteArray(produto.getImage(), 0, produto.getImage().length);
             productImage.setImageBitmap(bitmap);
         }catch (Exception e){
             productImage.setImageResource(R.drawable.no_image_found);
         }
+        */
 
         return view;
     }

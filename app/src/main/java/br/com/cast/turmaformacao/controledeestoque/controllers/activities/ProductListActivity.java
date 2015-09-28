@@ -18,6 +18,7 @@ import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.adapters.ProductAdapter;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskDelete;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskRefresh;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncWebRefresh;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.TaskSyncInterface;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
@@ -136,7 +137,7 @@ public class ProductListActivity extends AppCompatActivity implements TaskSyncIn
 
     @Override
     public void refreshList() {
-        new ProductSyncTaskRefresh(this,this).execute();
+        new ProductSyncWebRefresh(this,this).execute();
     }
 
     @Override

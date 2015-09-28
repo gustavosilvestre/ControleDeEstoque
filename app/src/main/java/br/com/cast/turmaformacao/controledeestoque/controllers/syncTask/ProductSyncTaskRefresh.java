@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
+import br.com.cast.turmaformacao.controledeestoque.model.http.ProductService;
 import br.com.cast.turmaformacao.controledeestoque.model.service.ProductBusinessService;
 
 /**

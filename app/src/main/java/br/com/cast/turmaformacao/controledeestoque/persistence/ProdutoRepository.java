@@ -29,10 +29,10 @@ public final class ProdutoRepository {
 
         } else {
 
-            String where = ProdutoContract.ID+" = ? ";
+            String where = ProdutoContract.ID + " = ? ";
             String[] params = {String.valueOf(product.getId())};
 
-            db.update(ProdutoContract.TABLE,values,where,params);
+            db.update(ProdutoContract.TABLE, values, where, params);
         }
 
         dataBaseHelper.close();
@@ -40,7 +40,7 @@ public final class ProdutoRepository {
 
     }
 
-    public static List<Product> findAll(){
+    public static List<Product> findAll() {
 
         DataBaseHelper dataBaseHelper = DataBaseHelper.getIstance();
         SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
@@ -60,10 +60,42 @@ public final class ProdutoRepository {
         String where = ProdutoContract.ID + " = ?";
         String params[] = {String.valueOf(id)};
 
-        db.delete(ProdutoContract.TABLE,where,params);
+        db.delete(ProdutoContract.TABLE, where, params);
 
         dataBaseHelper.close();
         db.close();
+
+    }
+
+    public static Long getIdByWebId(Long web_id) {
+
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getIstance();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+
+        String where = ProdutoContract.WEB_ID + " = ? ";
+        String[] params = {web_id.toString()};
+
+        Cursor cursor = db.query(ProdutoContract.TABLE, ProdutoContract.COLUNS, where, params, null, null, null);
+
+        Product p = ProdutoContract.getProduct(cursor);
+
+        return p == null ? null : p.getId();
+    }
+
+    public static Product getById(Long id) {
+
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getIstance();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+
+        String where = ProdutoContract.ID + " = ? ";
+        String[] params = {id.toString()};
+
+        Cursor cursor = db.query(ProdutoContract.TABLE, ProdutoContract.COLUNS, where, params, null, null, null);
+
+        Product product = ProdutoContract.getProduct(cursor);
+
+        return product;
+
 
     }
 }

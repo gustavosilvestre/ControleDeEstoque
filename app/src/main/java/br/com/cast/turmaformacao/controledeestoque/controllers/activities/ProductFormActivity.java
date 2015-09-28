@@ -19,8 +19,10 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Date;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
+import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductBitmapTask;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskSave;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 import br.com.cast.turmaformacao.controledeestoque.util.FormerHelper;
@@ -124,11 +126,16 @@ public class ProductFormActivity extends AppCompatActivity {
 
     private void bindImagemViewProduto() {
         imageViewProduct = (ImageView) findViewById(R.id.activity_product_form_productImage);
-        if(produto.getImage() == null)
+
+       if(produto.getImage() == null)
             return;
 
+        new ProductBitmapTask(produto.getImage(),imageViewProduct).execute();
+
+       /*
         selectImageArray = produto.getImage();
         imageViewProduct.setImageBitmap(BitmapFactory.decodeByteArray(produto.getImage(),0,produto.getImage().length));
+        */
 
     }
 
@@ -193,9 +200,10 @@ public class ProductFormActivity extends AppCompatActivity {
     private void bindProduto() {
         produto.setName(editTextName.getText().toString());
         produto.setDescription(editTextDescription.getText().toString());
-        produto.setStock(Integer.parseInt(editTextStock.getText().toString()));
-        produto.setMinStock(Integer.parseInt(editTextMinStock.getText().toString()));
+        produto.setStock(Long.parseLong(editTextStock.getText().toString()));
+        produto.setMinStock(Long.parseLong(editTextMinStock.getText().toString()));
         produto.setUnitPrice(Double.parseDouble(editTextUnitPrice.getText().toString()));
-        produto.setImage(selectImageArray);
+        produto.setData(new Date().getTime());
+        //produto.setImage(selectImageArray);
     }
 }
