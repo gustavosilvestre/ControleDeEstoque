@@ -25,4 +25,5 @@
     <string name="lbl_button_takePicture">Tirar Foto</string>
     <string name="msg_wait">Aguarde…</string>
     <string name="msg_product_save_successfully">Produto salvo com sucesso!</string>
+    <string name="app_products">Produtos</string>
 </resources>

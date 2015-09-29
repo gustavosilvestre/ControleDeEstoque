@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.cast.turmaformacao.controledeestoque">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".applicationManager.ApplicationManager"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".controllers.activities.ProductListActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_products">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +22,7 @@
         </activity>
         <activity
             android:name=".controllers.activities.ProductFormActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

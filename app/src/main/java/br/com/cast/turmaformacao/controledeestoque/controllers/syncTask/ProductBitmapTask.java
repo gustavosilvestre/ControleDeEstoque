@@ -2,9 +2,9 @@ package br.com.cast.turmaformacao.controledeestoque.controllers.syncTask;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.ImageView;
 
+import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.util.BitmapHelper;
 
 /**
@@ -29,6 +29,12 @@ public class ProductBitmapTask extends AsyncTask<Void, String, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
+
+        if(bitmap == null){
+            imageView.setImageResource(R.drawable.no_image_found);
+            return;
+        }
+
         imageView.setImageBitmap(bitmap);
     }
 }

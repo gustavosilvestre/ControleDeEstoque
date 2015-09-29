@@ -1,24 +1,17 @@
 package br.com.cast.turmaformacao.controledeestoque.controllers.adapters;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductBitmapTask;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
-import br.com.cast.turmaformacao.controledeestoque.util.BitmapHelper;
 
 /**
  * Created by Administrador on 25/09/2015.
@@ -27,6 +20,8 @@ public class ProductAdapter extends BaseAdapter {
 
     private Activity context;
     private List<Product> lista;
+    private static final String COLOR_SINCRONIZED = "#4CAF50";
+    private static final String COLOR_NOT_SINCRONIZED = "#F44336";
 
     public ProductAdapter(Activity context, List<Product> lista) {
         this.context = context;
@@ -54,29 +49,40 @@ public class ProductAdapter extends BaseAdapter {
         View view;
 
         if (convertView == null) {
-            view = context.getLayoutInflater().inflate(R.layout.list_item_produto, parent, false);
+            view = context.getLayoutInflater().inflate(R.layout.list_item_product_card, parent, false);
         } else {
             view = convertView;
         }
 
         Product produto = getItem(position);
 
-        TextView id = (TextView) view.findViewById(R.id.list_item_product_id);
+        //TextView id = (TextView) view.findViewById(R.id.list_item_product_id);
         TextView name = (TextView) view.findViewById(R.id.list_item_product_name);
-        TextView description = (TextView) view.findViewById(R.id.list_item_product_description);
+        //TextView description = (TextView) view.findViewById(R.id.list_item_product_description);
         TextView stock = (TextView) view.findViewById(R.id.list_item_product_stock);
-        TextView minStock = (TextView) view.findViewById(R.id.list_item_product_minStock);
+        //TextView minStock = (TextView) view.findViewById(R.id.list_item_product_minStock);
         TextView unitPrice = (TextView) view.findViewById(R.id.list_item_product_unitPrice);
         ImageView productImage = (ImageView) view.findViewById(R.id.list_item_product_image);
 
-        id.setText(produto.getId().toString());
+        //id.setText(produto.getId().toString());
         name.setText(produto.getName());
-        description.setText(produto.getDescription());
+        //description.setText(produto.getDescription());
         stock.setText(produto.getStock().toString());
-        minStock.setText(produto.getMinStock().toString());
+        //minStock.setText(produto.getMinStock().toString());
         unitPrice.setText(produto.getUnitPrice().toString());
+        new ProductBitmapTask(produto.getImage(), productImage).execute();
 
-        new ProductBitmapTask(produto.getImage(),productImage).execute();
+        /*
+        int hexColor;
+
+        if (produto.isFlag()) {
+            hexColor = android.graphics.Color.parseColor(COLOR_SINCRONIZED);
+        } else {
+            hexColor = android.graphics.Color.parseColor(COLOR_NOT_SINCRONIZED);
+        }
+
+        view.setBackgroundColor(hexColor);
+        */
 
         /*
         try {

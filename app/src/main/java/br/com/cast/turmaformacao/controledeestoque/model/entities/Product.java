@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -43,6 +42,7 @@ public class Product implements Parcelable {
     private Boolean flag;
 
     public Product() {
+        flag = false;
     }
 
     @Override

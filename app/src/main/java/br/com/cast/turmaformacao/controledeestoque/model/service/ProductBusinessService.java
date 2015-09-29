@@ -15,36 +15,43 @@ public final class ProductBusinessService {
         super();
     }
 
-    public static void sincronized(){
+    public static void sincronized() {
 
         List<Product> listaWeb = ProductService.getAll();
 
-        for(Product productWeb : listaWeb){
-            Long id = ProductBusinessService.getIdByWebId(productWeb.getId_web());
+        for (Product productWeb : listaWeb) {
+
+            Long id_local = ProductBusinessService.getIdByWebId(productWeb.getId_web());
             productWeb.setFlag(true);
-            if(id == null){
+
+            if (id_local == null) {
+
                 save(productWeb);
-            }else{
-                productWeb.setId(id);
-                Product produtoLocal = ProductBusinessService.getById(id);
-                if(checkLastModified(produtoLocal,productWeb)){
+
+            } else {
+
+                productWeb.setId(id_local);
+
+                Product produtoLocal = ProductBusinessService.getById(id_local);
+
+                if (checkLastModified(produtoLocal, productWeb)) {
                     save(productWeb);
                 }
             }
         }
     }
 
-    private static boolean checkLastModified(Product local, Product web){
+    private static boolean checkLastModified(Product web, Product local) {
 
-       if(web.getData() > local.getData()){
-           return true;
-       }
+        if (web.getData() > local.getData()) {
+            return true;
+        }
 
         return false;
 
     }
 
-    public static Product getById(Long id){
+    public static Product getById(Long id) {
         return ProdutoRepository.getById(id);
     }
 

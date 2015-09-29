@@ -4,11 +4,9 @@ import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,8 @@ import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
  */
 public final class ProductService {
 
-    private static final String API_URL = "http://10.11.21.193:4000/api/v1/products";
+    //private static final String API_URL = "http://10.11.21.193:4000/api/v1/products";
+    private static final String API_URL = "http://demo3301803.mockable.io/product";
 
     private ProductService() {
         super();
