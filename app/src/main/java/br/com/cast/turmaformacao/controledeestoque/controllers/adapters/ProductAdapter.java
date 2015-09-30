@@ -1,11 +1,15 @@
 package br.com.cast.turmaformacao.controledeestoque.controllers.adapters;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -46,43 +50,19 @@ public class ProductAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view;
-
-        if (convertView == null) {
-            view = context.getLayoutInflater().inflate(R.layout.list_item_product_card, parent, false);
-        } else {
-            view = convertView;
-        }
+        View view = context.getLayoutInflater().inflate(R.layout.list_item_card, parent, false);
 
         Product produto = getItem(position);
 
-        //TextView id = (TextView) view.findViewById(R.id.list_item_product_id);
-        TextView name = (TextView) view.findViewById(R.id.list_item_product_name);
-        //TextView description = (TextView) view.findViewById(R.id.list_item_product_description);
-        TextView stock = (TextView) view.findViewById(R.id.list_item_product_stock);
-        //TextView minStock = (TextView) view.findViewById(R.id.list_item_product_minStock);
-        TextView unitPrice = (TextView) view.findViewById(R.id.list_item_product_unitPrice);
-        ImageView productImage = (ImageView) view.findViewById(R.id.list_item_product_image);
+        ImageView productImage = (ImageView) view.findViewById(R.id.card_item_product_image);
+        TextView productName = (TextView) view.findViewById(R.id.card_item_product_name);
+        TextView productUnitaryPrice = (TextView) view.findViewById(R.id.card_item_product_unitPrice);
+        TextView productStock = (TextView) view.findViewById(R.id.card_item_product_stock);
 
-        //id.setText(produto.getId().toString());
-        name.setText(produto.getName());
-        //description.setText(produto.getDescription());
-        stock.setText(produto.getStock().toString());
-        //minStock.setText(produto.getMinStock().toString());
-        unitPrice.setText(produto.getUnitPrice().toString());
-        new ProductBitmapTask(produto.getImage(), productImage).execute();
-
-        /*
-        int hexColor;
-
-        if (produto.isFlag()) {
-            hexColor = android.graphics.Color.parseColor(COLOR_SINCRONIZED);
-        } else {
-            hexColor = android.graphics.Color.parseColor(COLOR_NOT_SINCRONIZED);
-        }
-
-        view.setBackgroundColor(hexColor);
-        */
+        //new ProductBitmapTask(produto.getImage(),productImage).execute();
+        productName.setText(produto.getName());
+        productStock.setText(produto.getStock().toString());
+        productUnitaryPrice.setText(produto.getUnitPrice().toString());
 
         /*
         try {
@@ -92,6 +72,7 @@ public class ProductAdapter extends BaseAdapter {
             productImage.setImageResource(R.drawable.no_image_found);
         }
         */
+
 
         return view;
     }

@@ -5,19 +5,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.List;
-
 import br.com.cast.turmaformacao.controledeestoque.R;
 import br.com.cast.turmaformacao.controledeestoque.controllers.adapters.ProductAdapter;
+import br.com.cast.turmaformacao.controledeestoque.controllers.adapters.RvProductAdapter;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskDelete;
-import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncTaskRefresh;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.ProductSyncWebRefresh;
 import br.com.cast.turmaformacao.controledeestoque.controllers.syncTask.TaskSyncInterface;
 import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
@@ -25,7 +27,8 @@ import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 
 public class ProductListActivity extends AppCompatActivity implements TaskSyncInterface<Product> {
 
-    private ListView listViewProduct;
+    private RecyclerView recyclerView;
+    private ListView listView;
     private Product selectProduct;
     public final static String PARAM_PRODUCT = "SELECT_PRODUCT";
 
@@ -33,28 +36,31 @@ public class ProductListActivity extends AppCompatActivity implements TaskSyncIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-        bindListViewProduto();
+        //bindRecyclerView();
+        bindListView();
     }
 
-    private void bindListViewProduto() {
-        listViewProduct = (ListView) findViewById(R.id.activity_produto_list_listView);
-        registerForContextMenu(listViewProduct);
-        listViewProduct.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                ProductAdapter adapter = (ProductAdapter) listViewProduct.getAdapter();
-                selectProduct = adapter.getItem(position);
-                return false;
-            }
-        });
+    private void bindListView() {
+        listView = (ListView) findViewById(R.id.product_lv);
+    }
+
+    private void bindRecyclerView() {
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ProductListActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 
     private void onUpdateList(List<Product> lista) {
 
-        listViewProduct.setAdapter(new ProductAdapter(ProductListActivity.this, lista));
-        ProductAdapter adapter = (ProductAdapter) listViewProduct.getAdapter();
+        listView.setAdapter(new ProductAdapter(this, lista));
+        ProductAdapter adapter = (ProductAdapter) listView.getAdapter();
         adapter.notifyDataSetChanged();
+
+
+        // recyclerView.setAdapter(new RvProductAdapter(this,lista));
+        //recyclerView.getAdapter().notifyDataSetChanged();
 
     }
 

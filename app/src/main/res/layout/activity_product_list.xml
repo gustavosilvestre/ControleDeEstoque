@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <ListView
-        android:id="@+id/activity_produto_list_listView"
+        android:id="@+id/product_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

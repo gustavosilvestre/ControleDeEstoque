@@ -19,7 +19,7 @@ import br.com.cast.turmaformacao.controledeestoque.model.entities.Product;
 public final class ProductService {
 
     //private static final String API_URL = "http://10.11.21.193:4000/api/v1/products";
-    private static final String API_URL = "http://demo3301803.mockable.io/product";
+    private static final String API_URL = "http://187.66.199.87:8080/ServidorRest/webresources/product/product";
 
     private ProductService() {
         super();
@@ -71,7 +71,6 @@ public final class ProductService {
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 InputStream inputStream = con.getInputStream();
-
                 list = objectMapper.readValue(inputStream, objectMapper.getTypeFactory().constructCollectionType(List.class, Product.class));
                 con.disconnect();
             }
